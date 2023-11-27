@@ -1,0 +1,20 @@
+services:
+  api:
+    build: .
+    environment:
+      DB_PORT: 5566
+      DB_USER: rowan
+      DB_NAME: test
+      DB_PASSWORD_FILE: /run/secrets/db_password
+      DB_HOST_FILE: /run/secrets/db_host
+    ports:
+      - "8000:8000"
+    secrets:
+      - db_password
+      - db_host
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_host:
+    file: ./secrets/db_host.txt
